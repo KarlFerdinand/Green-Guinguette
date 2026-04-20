@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Guinguette – Bal des Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #F97316;
+    --orange-dark: #EA580C;
+    --green: #22C55E;
+    --green-dark: #15803D;
+    --green-deeper: #166534;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--orange);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px 60px;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 85% 80%, rgba(0,0,0,0.06) 0%, transparent 50%);
+  }
+
+  .logo-wrap {
+    margin-bottom: 6px;
+    animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .logo-wrap h1 {
+    font-family: 'Righteous', cursive;
+    font-size: clamp(72px, 20vw, 120px);
+    color: var(--green);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    text-shadow:
+      4px 4px 0 var(--green-deeper),
+      -1px -1px 0 var(--green-deeper);
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--white);
+    color: var(--orange-dark);
+    font-family: 'Righteous', cursive;
+    font-size: 15px;
+    letter-spacing: 3px;
+    padding: 5px 20px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    border: 2px solid var(--orange-dark);
+    animation: popIn 0.6s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .welcome {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0.9;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .section-label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+    margin-top: 8px;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .links-col {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-bottom: 22px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--green);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 14px 22px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid var(--green-dark);
+    transition: transform 0.13s, background 0.13s, box-shadow 0.13s;
+    box-shadow: 0 4px 0 var(--green-deeper);
+  }
+
+  .link-btn:hover {
+    background: var(--green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 var(--green-deeper);
+  }
+
+  .link-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--green-deeper);
+  }
+
+  .btn-icon { font-size: 20px; flex-shrink: 0; }
+
+  .btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  .btn-text .handle { font-size: 15px; font-weight: 600; }
+  .btn-text .sub    { font-size: 11px; font-weight: 400; opacity: 0.8; }
+
+  .event-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--white);
+    border-radius: 20px;
+    border: 2px solid var(--orange-dark);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 0 var(--orange-dark);
+    animation: fadeUp 0.5s 0.35s ease both;
+  }
+
+  .event-header {
+    background: var(--green);
+    padding: 13px 18px;
+    border-bottom: 2px solid var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .event-header .etitle {
+    font-family: 'Righteous', cursive;
+    font-size: 21px;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 var(--green-deeper);
+  }
+
+  .event-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .meta-pill {
+    background: #FFF7ED;
+    border: 1.5px solid #FDBA74;
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--orange-dark);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .feats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .feat-tag {
+    background: #F0FDF4;
+    border: 1.5px solid #86EFAC;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--green-dark);
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .fb-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    background: #1877F2;
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s, transform 0.1s;
+    box-shadow: 0 3px 0 #0D5EC5;
+    letter-spacing: 0.3px;
+  }
+
+  .fb-btn:hover { background: #0D65CE; transform: translateY(-2px); }
+  .fb-btn:active { transform: translateY(1px); }
+
+  .qr-section {
+    width: 100%;
+    max-width: 440px;
+    background: var(--white);
+    border-radius: 20px;
+    border: 2px solid var(--green-dark);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 5px 0 var(--green-deeper);
+    animation: fadeUp 0.5s 0.45s ease both;
+  }
+
+  .qr-label {
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    color: var(--orange-dark);
+    letter-spacing: 1px;
+  }
+
+  #qr-container canvas,
+  #qr-container img {
+    border-radius: 10px;
+    display: block;
+  }
+
+  .footer {
+    margin-top: 28px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.75); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .link-btn { animation: fadeUp 0.4s ease both; }
+  .link-btn:nth-child(1) { animation-delay: 0.22s; }
+  .link-btn:nth-child(2) { animation-delay: 0.30s; }
+  .link-btn:nth-child(3) { animation-delay: 0.38s; }
+</style>
+</head>
+<body>
+
+<div class="logo-wrap">
+  <h1>GREEN</h1>
+</div>
+<div class="badge">GUINGUETTE</div>
+<p class="welcome">🌿 Bienvenue au bal des solutions 🌿</p>
+
+<p class="section-label">Nos Instagrams</p>
+<div class="links-col">
+  <a href="https://www.instagram.com/genauassociation/" target="_blank" class="link-btn">
+    <span class="btn-icon">🌱</span>
+    <div class="btn-text">
+      <span class="handle">@genauassociation</span>
+      <span class="sub">Association Genau</span>
+    </div>
+  </a>
+  <a href="https://www.instagram.com/we.r.solar/" target="_blank" class="link-btn">
+    <span class="btn-icon">☀️</span>
+    <div class="btn-text">
+      <span class="handle">@we.r.solar</span>
+      <span class="sub">We R Solar</span>
+    </div>
+  </a>
+  <a href="https://www.instagram.com/lasonocyclette/" target="_blank" class="link-btn">
+    <span class="btn-icon">🚲</span>
+    <div class="btn-text">
+      <span class="handle">@lasonocyclette</span>
+      <span class="sub">La Sono Cyclette</span>
+    </div>
+  </a>
+</div>
+
+<div class="event-card">
+  <div class="event-header">
+    <span class="etitle">GREEN GUINGUETTE</span>
+  </div>
+  <div class="event-body">
+    <div class="meta-row">
+      <span class="meta-pill">📅 19 JUIN - 16 JUILLET - 16 AOÛT - 27 Sept.</span>
+      <span class="meta-pill">⏰ 16h – 20h</span>
+      <span class="meta-pill">📍 TOUR MERVEILLEUSE DU SCHLOESSEL - PARC DU HEYRITZ - JARDIN DES DEUX RIVES - PARC DE LA CITADELLE</span>
+    </div>
+    <div class="feats-row">
+      <span class="feat-tag">🎧 DJ SETS</span>
+      <span class="feat-tag">🍹 FOOD & DRINKS</span>
+      <span class="feat-tag">🎪 FREE OPEN AIR</span>
+    </div>
+    <a href="https://www.facebook.com/events/" target="_blank" class="fb-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Voir l'événement Facebook
+    </a>
+  </div>
+</div>
+
+<div class="qr-section">
+  <p class="qr-label">📲 Scanner pour partager la page</p>
+  <div id="qr-container"></div>
+</div>
+
+<p class="footer">Made with 💚 · Green Guinguette 2026</p>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById('qr-container'), {
+    text: window.location.href,
+    width: 200,
+    height: 200,
+    colorDark: '#15803D',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
